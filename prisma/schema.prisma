@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+//mongodb+srv://MongoBongoBaby:JiHkoKlmQDPyIMZE@cluster0.6edndsa.mongodb.net/
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  authorID String?
+  content String //may get murdered idk
+}
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  accountName String
+  accountPassword String
+}
